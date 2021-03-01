@@ -2,7 +2,6 @@ package HW_05_02_2021;
 //Создать двумерный массив, размер которого вводится с консоли
 //Вывести массив в консоль заменив чётные числа 0, а нечётные - 1
 
-import javax.sound.midi.Soundbank;
 import java.util.Random;
 import java.util.Scanner;
 
