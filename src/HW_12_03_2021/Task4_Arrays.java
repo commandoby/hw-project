@@ -10,18 +10,16 @@ import java.util.Scanner;
 
 public class Task4_Arrays {
     public static void main(String[] args) {
-
         //Объявляем значение n
-        int n = 0;
+        int n;
         int nArray2 = 0; //Переменная для счётчика размера второго массива
         Scanner in = new Scanner(System.in);
         System.out.print("Введите значение n больше 3: ");
         n = in.nextInt();
-        for (; n <= 3;) {
+        for (; n <= 3; ) {
             System.out.print("Вы ввели неверное число. Пожалуйста, введите число более 3: ");
             n = in.nextInt();
         }
-
         //Создаём массив 1
         Random r = new Random();
         int[] array1 = new int[n];
@@ -32,7 +30,6 @@ public class Task4_Arrays {
             }
         }
         System.out.println(Arrays.toString(array1));
-
         //Создаём массив 2
         int[] array2 = new int[nArray2];
         int b = 0;

@@ -9,17 +9,15 @@ import java.util.Scanner;
 
 public class Task5_Recursion {
     public static void main(String[] args) {
-
         //Ввод числа n
         int n = 0;
         Scanner in = new Scanner(System.in);
         System.out.print("Введите число n больше 1: ");
         n = in.nextInt();
-        for (; n <= 1;) {
+        for (; n <= 1; ) {
             System.out.print("Вы ввели неверное число. Пожалуйста введите число n>1: ");
             n = in.nextInt();
         }
-
         //Вызов метода расчёта простого числа и вывод ответа
         boolean answer = simple(n, 2);
         if (answer) {
@@ -28,16 +26,15 @@ public class Task5_Recursion {
             System.out.printf("Is number %d simple - NO", n);
         }
     }
-
     //Расчет простого числа
-    static boolean simple (int n, int a) {
+    static boolean simple(int n, int a) {
         if (n == a) {
             return true;
         } else {
             if (n % a == 0) {
                 return false;
             } else {
-               return simple(n, ++a);
+                return simple(n, ++a);
             }
         }
     }
