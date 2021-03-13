@@ -10,11 +10,11 @@ import java.util.Scanner;
 public class Task5_Recursion {
     public static void main(String[] args) {
         //Ввод числа n
-        int n = 0;
+        int n;
         Scanner in = new Scanner(System.in);
         System.out.print("Введите число n больше 1: ");
         n = in.nextInt();
-        for (; n <= 1; ) {
+        while (n <= 1) {
             System.out.print("Вы ввели неверное число. Пожалуйста введите число n>1: ");
             n = in.nextInt();
         }
