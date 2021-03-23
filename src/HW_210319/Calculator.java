@@ -24,8 +24,8 @@ public class Calculator {
 
     //Создаём конструктор
     public Calculator(int operandOne, int operandTwo) {
-        setOperandOne(operandOne);
-        setOperandTwo(operandTwo);
+        this.operandOne = operandOne;
+        this.operandTwo = operandTwo;
     }
 
     //Создаём методы

@@ -10,7 +10,7 @@ public class Computer {
     private int hardDiscSpace;
     private boolean state;
     private boolean workingCapacity;
-    Random random = new Random();
+    private Random random = new Random();
 
     public String getProcessorType() {
         return processorType;
@@ -45,9 +45,9 @@ public class Computer {
     }
 
     public Computer(String processorType, int sizeRAM, int hardDiscSpace) {
-        setProcessorType(processorType);
-        setSizeRAM(sizeRAM);
-        setHardDiscSpace(hardDiscSpace);
+        this.processorType = processorType;
+        this.sizeRAM = sizeRAM;
+        this.hardDiscSpace = hardDiscSpace;
         state = false;
         workingCapacity = true;
     }

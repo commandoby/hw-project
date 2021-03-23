@@ -43,10 +43,10 @@ public class Student {
 
     //Создаем конструктор
     public Student(String name, String surname, String dataOfBirthday, int curse) {
-        setName(name);
-        setSurname(surname);
-        setDataOfBirthday(dataOfBirthday);
-        setCourse(curse);
+        this.name = name;
+        this.surname = surname;
+        this.dataOfBirthday = dataOfBirthday;
+        this.course = curse;
     }
 
     //Метод вывода списка студентов одного курса
