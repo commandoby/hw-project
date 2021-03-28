@@ -1,14 +1,8 @@
 package HW_210402;
 
-import HW_210402.IHand.AppleHand;
-import HW_210402.IHand.FoxconnHand;
-import HW_210402.IHand.SamsungHand;
-import HW_210402.IHead.AppleHead;
-import HW_210402.IHead.FoxconnHead;
-import HW_210402.IHead.SamsungHead;
-import HW_210402.ILeg.AppleLeg;
-import HW_210402.ILeg.FoxconnLeg;
-import HW_210402.ILeg.SamsungLeg;
+import HW_210402.IHand.*;
+import HW_210402.IHead.*;
+import HW_210402.ILeg.*;
 
 public class Run {
     public static void main(String[] args) {
