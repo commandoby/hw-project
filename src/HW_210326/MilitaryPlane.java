@@ -29,26 +29,23 @@ public class MilitaryPlane extends AirTransport {
 
     @Override
     public void info() {
+        String on = ejectionSystem ? "присутствует." : "отсутствует.";
         System.out.printf("""
                         Военный самолёт марки %s имеет следующие характеристики:
                          - Мощность самолёта равна %d лс (%.2f кВт);
                          - Размах крыльев самолёта равен %d м;
                          - При массе %d кг, самолёту необходимо %d м полосы для взлёта;
                          - Максимальная скорость самолёта составляет %d км/ч;
-                         - Количество ракет на борту - %d, система катапультирования""",
+                         - Количество ракет на борту - %d, система катапультирования %s
+                         """,
                 model, power, powerTransfer(), wingspan, weight, minimumRunwayLength, maximumSpeed,
-                numberOfMissiles);
-        if (ejectionSystem) {
-            System.out.println(" присутствует.");
-        } else {
-            System.out.println(" отсутствует.");
-        }
+                numberOfMissiles, on);
     }
 
     public void shot() {
         if (numberOfMissiles > 0) {
             numberOfMissiles--;
-            System.out.printf("Ракета пошла. Осталось %d ракет.\n", numberOfMissiles);
+            System.out.printf("Ракета пошла. Осталось %d ракет(а).\n", numberOfMissiles);
         } else {
             System.out.println("Боеприпасы отсутствуют.");
         }
