@@ -29,20 +29,17 @@ public class CivilPlane extends AirTransport {
 
     @Override
     public void info() {
+        String on = (businessClass) ? "присутствует." : "отсутствует.";
         System.out.printf("""
                         Пассажирский самолёт марки %s имеет следующие характеристики:
                          - Мощность самолёта равна %d лс (%.2f кВт);
                          - Размах крыльев самолёта равен %d м;
                          - При массе %d кг, самолёту необходимо %d м полосы для взлёта;
                          - Максимальная скорость самолёта составляет %d км/ч;
-                         - Количество мест на борту - %d, бизнес-класс""",
+                         - Количество мест на борту - %d, бизнес-класс %s
+                         """,
                 model, power, powerTransfer(), wingspan, weight, minimumRunwayLength, maximumSpeed,
-                numberOfPassengers);
-        if (businessClass) {
-            System.out.println(" присутствует.");
-        } else {
-            System.out.println(" отсутствует.");
-        }
+                numberOfPassengers, on);
     }
 
     public void loadPlane(int passengers) {

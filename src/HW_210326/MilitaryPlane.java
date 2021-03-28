@@ -48,7 +48,7 @@ public class MilitaryPlane extends AirTransport {
     public void shot() {
         if (numberOfMissiles > 0) {
             numberOfMissiles--;
-            System.out.println("Ракета пошла.");
+            System.out.printf("Ракета пошла. Осталось %d ракет.\n", numberOfMissiles);
         } else {
             System.out.println("Боеприпасы отсутствуют.");
         }
