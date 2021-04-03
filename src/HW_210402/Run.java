@@ -11,9 +11,9 @@ public class Run {
         robot[1] = new Robot(new AppleHead(890), new FoxconnHand(460), new SamsungLeg(410));
         robot[2] = new Robot(new FoxconnHead(610), new SamsungHand(430), new AppleLeg(490));
 
-        robot[0].action();
-        robot[1].action();
-        robot[2].action();
+        for (IRobot i : robot) {
+            i.action();
+        }
 
         //Вычисляем самого дорогого робота
         int numberRobot = 0;
