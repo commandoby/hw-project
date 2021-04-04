@@ -1,6 +1,6 @@
 package HW_210409.Task1_Сallback;
 
-import java.awt.*;
+import java.awt.Frame;
 
 public class Main {
     public static void main(String[] args) {

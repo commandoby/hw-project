@@ -9,13 +9,9 @@ public class TimerFrame {
     public TimerFrame(Frame frame, int x, int y) {
         this.frame = frame;
         frame.setBounds(x, y, 280, 100);
-        //frame.setSize(280, 100);
-        frame.setVisible(true);
         frame.add(new Text());
-    }
-
-    public void windowClosing(WindowEvent e) {
-        ((Window) e.getSource()).dispose();
+        frame.setVisible(true);
+        frame.addWindowListener(new WindowClosingAdapter());
     }
 }
 
@@ -26,8 +22,8 @@ class Text extends Canvas {
     }
 }
 
-/*class WindowClosingAdapter extends WindowAdapter {
+class WindowClosingAdapter extends WindowAdapter {
     public void windowClosing(WindowEvent e) {
         ((Window) e.getSource()).dispose();
     }
-}*/
+}
