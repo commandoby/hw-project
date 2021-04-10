@@ -3,7 +3,7 @@ package HW_210416;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-public class Product {
+public class Product implements Comparable {
     private int id;
     private String name;
     private int price;
@@ -57,5 +57,10 @@ public class Product {
                 ", name='" + name + '\'' +
                 ", price=" + price +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        return this.getName().compareTo(((Product) o).getName());
     }
 }
