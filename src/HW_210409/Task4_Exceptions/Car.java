@@ -7,6 +7,7 @@ public class Car {
     private String model;
     private int maxSpeed;
     private int price;
+    private boolean engineStarted = false;
 
     public Car() {
         model = "Volkswagen Golf III";
@@ -44,12 +45,19 @@ public class Car {
         this.price = price;
     }
 
-    public void Start() throws EngineFailureException {
-        Random random = new Random();
-        if (random.nextInt(20) % 2 != 0) {
-            System.out.println(model + " started up.");
-        } else {
-            throw new EngineFailureException(model + " engine will not start.");
+    public boolean isEngineStarted() {
+        return engineStarted;
+    }
+
+    public void start() throws EngineFailureException {
+        if (!engineStarted) {
+            Random random = new Random();
+            if (random.nextInt(20) % 2 != 0) {
+                engineStarted = true;
+                System.out.println(model + " started up.");
+            } else {
+                throw new EngineFailureException(model + " engine will not start.");
+            }
         }
     }
 }

@@ -8,9 +8,8 @@ public class Main {
         int pos = 0;
         while (true) {
             timer.act(10);
-            //System.out.println("It took 10 seconds.");
             pos++;
-            TimerFrame frame = new TimerFrame(new Frame("Timer window"), pos*15, pos*10);
+            TimerFrame frame = new TimerFrame(new Frame("Timer window"), pos * 15, pos * 10);
         }
     }
 }
@@ -32,7 +31,6 @@ interface Timer {
 }
 
 class WaitTimer implements Timer {
-
     @Override
     public void act(int second) {
         try {
