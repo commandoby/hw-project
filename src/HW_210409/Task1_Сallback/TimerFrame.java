@@ -1,7 +1,11 @@
 package HW_210409.Task1_Сallback;
 
-import java.awt.*;
-import java.awt.event.*;
+import java.awt.Frame;
+import java.awt.Canvas;
+import java.awt.Graphics;
+import java.awt.Window;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class TimerFrame {
     Frame frame;
