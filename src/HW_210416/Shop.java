@@ -22,6 +22,11 @@ public class Shop {
         if (searchId(id) < 0) {
             productList.add(new Product(id, name, price));
         } //Exception
+        try {
+            Thread.sleep(10);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     //удаление продукта по id
@@ -41,21 +46,20 @@ public class Shop {
     //Получение всех товаров
     public ArrayList<Product> getAll() {
         ArrayList<Product> getProductList = new ArrayList<>();
-        for (Product product : productList) {
-            getProductList.add(product);
+        for (Product p : productList) {
+            getProductList.add(p);
         }
         return getProductList;
     }
 
     //Печать списка продуктов
     public void printProducts(ArrayList<Product> list) {
-        for (Product product : list) {
-            System.out.println(product.toString());
+        for (Product p : list) {
+            System.out.println(p.toString());
         }
     }
 
-    /**
-     * Сортировка по алфавиту
+    /** Сортировка
      * type 0 - по алфавиту
      * type 1 - по цене (вверх)
      * type 2 - по цене (вниз)
@@ -76,13 +80,14 @@ public class Shop {
             case 3:
                 queueProducts = new PriorityQueue<>(1, comparatorData);
                 break;
-            default:
+            default: //Exception
                 throw new IllegalStateException("Unexpected value: " + type);
         }
         queueProducts.addAll(products);
         ArrayList<Product> listProduct = new ArrayList<>();
-        for (Product p : queueProducts) {
-            listProduct.add(p);
+        int sizeQueueProducts = queueProducts.size();
+        for (int i = 0; i < sizeQueueProducts; i++) {
+            listProduct.add(queueProducts.poll());
         }
         return listProduct;
     }
