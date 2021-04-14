@@ -52,11 +52,10 @@ public class Product implements Comparable {
 
     @Override
     public String toString() {
-        return "Product{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                '}';
+        return "Product [" + id +
+                "]: name = '" + name + '\'' +
+                ", price = " + price +
+                ';';
     }
 
     @Override

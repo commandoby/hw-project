@@ -1,5 +1,7 @@
 package HW_210416;
 
+import HW_210416.Exceptions.InvalidIDException;
+
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.PriorityQueue;
@@ -18,10 +20,13 @@ public class Shop {
     }
 
     //добавление нового продукта
-    public void addProduct(int id, String name, int price) {
+    public void addProduct(int id, String name, int price) throws InvalidIDException {
         if (searchId(id) < 0) {
             productList.add(new Product(id, name, price));
-        } //Exception
+            System.out.println("Product added successfully!");
+        } else {
+            throw new InvalidIDException("Product from id: " + id + " is already in the shop.");
+        }
         try {
             Thread.sleep(10);
         } catch (InterruptedException e) {
@@ -30,17 +35,23 @@ public class Shop {
     }
 
     //удаление продукта по id
-    public void removeProduct(int id) {
+    public void removeProduct(int id) throws InvalidIDException {
         if (searchId(id) >= 0) {
             productList.remove(searchId(id));
-        } //Exception
+            System.out.println("The product has been successfully removed!");
+        } else {
+            throw new InvalidIDException("Product from id: " + id + " does not exist in the shop.");
+        }
     }
 
     //изменение продукта по id
-    public void changeProduct(int id, String name, int price) {
+    public void changeProduct(int id, String name, int price) throws InvalidIDException {
         if (searchId(id) >= 0) {
             productList.set(searchId(id), new Product(id, name, price));
-        } //Exception
+            System.out.println("Product changed successfully!");
+        } else {
+            throw new InvalidIDException("Product from id: " + id + " does not exist in the shop.");
+        }
     }
 
     //Получение всех товаров
@@ -59,37 +70,43 @@ public class Shop {
         }
     }
 
-    /** Сортировка
+    /**
+     * Сортировка
      * type 0 - по алфавиту
      * type 1 - по цене (вверх)
      * type 2 - по цене (вниз)
      * type 3 - по добавлению
      */
     public ArrayList<Product> sortProduct(int type, ArrayList<Product> products) {
-        PriorityQueue<Product> queueProducts;
-        switch (type) {
-            case 0:
-                queueProducts = new PriorityQueue<>();
-                break;
-            case 1:
-                queueProducts = new PriorityQueue<>(1, comparatorPriceUp);
-                break;
-            case 2:
-                queueProducts = new PriorityQueue<>(1, comparatorPriceDown);
-                break;
-            case 3:
-                queueProducts = new PriorityQueue<>(1, comparatorData);
-                break;
-            default: //Exception
-                throw new IllegalStateException("Unexpected value: " + type);
+        try {
+            PriorityQueue<Product> queueProducts;
+            switch (type) {
+                case 0:
+                    queueProducts = new PriorityQueue<>();
+                    break;
+                case 1:
+                    queueProducts = new PriorityQueue<>(1, comparatorPriceUp);
+                    break;
+                case 2:
+                    queueProducts = new PriorityQueue<>(1, comparatorPriceDown);
+                    break;
+                case 3:
+                    queueProducts = new PriorityQueue<>(1, comparatorData);
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + type);
+            }
+            queueProducts.addAll(products);
+            ArrayList<Product> listProduct = new ArrayList<>();
+            int sizeQueueProducts = queueProducts.size();
+            for (int i = 0; i < sizeQueueProducts; i++) {
+                listProduct.add(queueProducts.poll());
+            }
+            return listProduct;
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
         }
-        queueProducts.addAll(products);
-        ArrayList<Product> listProduct = new ArrayList<>();
-        int sizeQueueProducts = queueProducts.size();
-        for (int i = 0; i < sizeQueueProducts; i++) {
-            listProduct.add(queueProducts.poll());
-        }
-        return listProduct;
+        return products;
     }
 
     public static Comparator<Product> comparatorPriceUp = new Comparator<Product>() {
