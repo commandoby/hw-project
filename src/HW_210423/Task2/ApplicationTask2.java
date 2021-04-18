@@ -20,10 +20,12 @@ public class ApplicationTask2 {
             while ((letter = reader.read()) != -1) {
                 if (letter == '\n' || letter == '\r' || letter == '.') {
                     if (letter == '.') {
-                        proposal.append('.');
+                        proposal.append((char) letter);
                     }
-                    proposalList.add(proposal.toString());
-                    proposal = new StringBuilder();
+                    if (!proposal.isEmpty()) {
+                        proposalList.add(proposal.toString());
+                        proposal = new StringBuilder();
+                    }
                 } else {
                     if (!(letter == ' ' && proposal.isEmpty())) {
                         proposal.append((char) letter);
