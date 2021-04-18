@@ -3,8 +3,8 @@ package HW_210416;
 import HW_210416.Exceptions.InvalidIDException;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
-import java.util.PriorityQueue;
 
 public class Shop {
     private ArrayList<Product> productList = new ArrayList<>();
@@ -56,11 +56,7 @@ public class Shop {
 
     //Получение всех товаров
     public ArrayList<Product> getAll() {
-        ArrayList<Product> getProductList = new ArrayList<>();
-        for (Product p : productList) {
-            getProductList.add(p);
-        }
-        return getProductList;
+        return productList;
     }
 
     //Печать списка продуктов
@@ -79,32 +75,30 @@ public class Shop {
      */
     public ArrayList<Product> sortProduct(int type, ArrayList<Product> products) {
         try {
-            PriorityQueue<Product> queueProducts;
+            ArrayList<Product> listProduct = new ArrayList<>();
+            for (Product p : products) {
+                listProduct.add(p);
+            }
             switch (type) {
                 case 0:
-                    queueProducts = new PriorityQueue<>();
+                    //listProduct.sort(listProduct.spliterator().getComparator());
+                    Collections.sort(listProduct);
                     break;
                 case 1:
-                    queueProducts = new PriorityQueue<>(1, comparatorPriceUp);
+                    listProduct.sort(comparatorPriceUp);
                     break;
                 case 2:
-                    queueProducts = new PriorityQueue<>(1, comparatorPriceDown);
+                    listProduct.sort(comparatorPriceDown);
                     break;
                 case 3:
-                    queueProducts = new PriorityQueue<>(1, comparatorData);
+                    listProduct.sort(comparatorData);
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + type);
             }
-            queueProducts.addAll(products);
-            ArrayList<Product> listProduct = new ArrayList<>();
-            int sizeQueueProducts = queueProducts.size();
-            for (int i = 0; i < sizeQueueProducts; i++) {
-                listProduct.add(queueProducts.poll());
-            }
             return listProduct;
         } catch (IllegalStateException e) {
-            e.printStackTrace();
+            System.out.println(e.toString());
         }
         return products;
     }

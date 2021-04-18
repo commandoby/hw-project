@@ -37,7 +37,7 @@ public class Application {
 
         ApplicationMenu menu = new ApplicationMenu();
         try {
-            menu.shop.addProduct(4521, "See Fesh", 760);
+            menu.shop.addProduct(4521, "See Fish", 760);
             menu.shop.addProduct(5442, "Pig Meat", 1150);
             menu.shop.addProduct(6115, "Bread", 152);
             menu.shop.addProduct(4248, "Juice", 342);
