@@ -18,14 +18,10 @@ public class ApplicationTask1 {
 
             //writing words to an array
             while ((letter = reader.read()) != -1) {
-                if (letter == '\n' || letter == '\r') {
-                    if (word.length() > 0) {
-                        wordList.add(word.toString());
-                        word = new StringBuilder();
-                    }
-                } else {
-                    word.append((char) letter);
-                }
+                word.append((char) letter);
+            }
+            for (String s : word.toString().split("\n")) {
+                wordList.add(s.trim());
             }
 
             //search for palindromes
@@ -36,8 +32,8 @@ public class ApplicationTask1 {
             }
 
             //writing palindromes to a file
-            for (String i : wordListPalindrome) {
-                writer.write(i);
+            for (String s : wordListPalindrome) {
+                writer.write(s);
                 writer.write('\n');
             }
             System.out.println("Palindromes added to \"TextNew.txt\"");

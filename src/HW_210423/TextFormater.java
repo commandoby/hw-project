@@ -14,55 +14,28 @@ public class TextFormater {
 
     //method of finding correct proposals
     public static boolean IsCorrectProposal(String proposal) {
-        char[] proposalChar = proposal.toCharArray();
-        StringBuilder word = new StringBuilder();
-        int wordLength = 0;
-        for (char ch : proposalChar) {
-            if (ch != ' ' && ch != '.' && ch != ',' && ch != '-' && ch != '!') {
-                word.append(ch);
-            } else {
-                if (!word.isEmpty()) {
-                    wordLength++;
+        ArrayList<String> wordList = new ArrayList<>();
+        for (String s : proposal.split(",")) {
+            for (String s1 : s.split(" ")) {
+                if (!s1.isEmpty()) {
+                    wordList.add(s1);
                 }
-                if (IsPalindrome(word.toString())) {
-                    return true;
-                }
-                word = new StringBuilder();
             }
         }
-        return wordLength >= 3 && wordLength <= 5;
-    }
-
-    //blacklisted word search method
-    public static boolean IsBLWord (String word, ArrayList<String> blackListWords) {
-        for (String s : blackListWords) {
-            if (word.compareToIgnoreCase(s) == 0) {
+        for (String s : wordList) {
+            if (IsPalindrome(s)) {
                 return true;
             }
         }
-        return false;
+        return wordList.size() >= 3 && wordList.size() <= 5;
     }
 
     //method to search for proposals without blacklisted words
-    public static boolean IsCorrectBLProposal(String proposal, ArrayList<String> blackListWords) {
-        char[] proposalChar = proposal.toCharArray();
-        StringBuilder word = new StringBuilder();
-        int proposalLength = 0;
-        for (char ch : proposalChar) {
-            if (ch == ' ' || ch == '.' || ch == ',' || ch == '-' || ch == '!') {
-                if (!word.isEmpty()) {
-                    if (IsBLWord(word.toString(), blackListWords)) {
-                        return true;
-                    }
-                    word = new StringBuilder();
-                }
-            } else {
-                word.append(ch);
-                proposalLength++;
+    public static boolean IsCorrectBLProposal(String word, ArrayList<String> blackListWords) {
+        for (String s : blackListWords) {
+            if (word.matches("(.*)" + s + "(.*)")) {
+                return true;
             }
-        }
-        if (IsBLWord(word.toString(), blackListWords)) {
-            return true;
         }
         return false;
     }

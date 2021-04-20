@@ -18,17 +18,12 @@ public class ApplicationTask2 {
 
             //writing proposals to an array
             while ((letter = reader.read()) != -1) {
-                if (letter == '\n' || letter == '\r' || letter == '.') {
-                    if (letter == '.') {
-                        proposal.append((char) letter);
-                    }
-                    if (!proposal.isEmpty()) {
-                        proposalList.add(proposal.toString());
-                        proposal = new StringBuilder();
-                    }
-                } else {
-                    if (!(letter == ' ' && proposal.isEmpty())) {
-                        proposal.append((char) letter);
+                proposal.append((char) letter);
+            }
+            for (String s : proposal.toString().split("\n")) {
+                for (String s1 : s.split("\\.")) {
+                    if (!s1.isEmpty()) {
+                        proposalList.add(s1.trim());
                     }
                 }
             }
