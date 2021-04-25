@@ -2,41 +2,38 @@ package HW_210423.Task2;
 
 import HW_210423.TextFormater;
 
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class ApplicationTask2 {
+    private static final String ORIGIN_FILE_PATH = "src\\HW_210423\\Task2\\Text.txt";
+    private static final String NEW_FILE_PATH = "src\\HW_210423\\Task2\\TextNew.txt";
+
     public static void main(String[] args) {
-        try (FileReader reader = new FileReader("src\\HW_210423\\Task2\\Text.txt");
-             FileWriter writer = new FileWriter("src\\HW_210423\\Task2\\TextNew.txt")) {
-            ArrayList<String> proposalList = new ArrayList<>();
-            ArrayList<String> proposalCorrectList = new ArrayList<>();
-            StringBuilder proposal = new StringBuilder();
-            int letter;
+        try (BufferedReader reader = new BufferedReader(new FileReader(ORIGIN_FILE_PATH));
+             FileWriter writer = new FileWriter(NEW_FILE_PATH)) {
+            ArrayList<String> sentenceList = new ArrayList<>();
+            ArrayList<String> sentenceCorrectList = new ArrayList<>();
+            String sentence;
 
             //writing proposals to an array
-            while ((letter = reader.read()) != -1) {
-                proposal.append((char) letter);
-            }
-            for (String s : proposal.toString().split("\n")) {
-                for (String s1 : s.split("\\.")) {
-                    if (!s1.isEmpty()) {
-                        proposalList.add(s1.trim());
-                    }
+            while ((sentence = reader.readLine()) != null) {
+                String[] sentences = sentence.split("\\.");
+                for (String s : sentences) {
+                    if (!s.isEmpty()) sentenceList.add(s.trim());
                 }
             }
 
             //search for correct proposals
-            for (String s : proposalList) {
-                if (TextFormater.IsCorrectProposal(s)) {
-                    proposalCorrectList.add(s);
-                }
+            for (String s : sentenceList) {
+                if (TextFormater.isCorrectSentence(s)) sentenceCorrectList.add(s);
             }
 
             //writing correct proposals to a file
-            for (String s : proposalCorrectList) {
+            for (String s : sentenceCorrectList) {
                 writer.write(s);
                 writer.write('\n');
             }
