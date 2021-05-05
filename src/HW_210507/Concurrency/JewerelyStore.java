@@ -1,14 +1,16 @@
 package HW_210507.Concurrency;
 
+import java.util.ArrayList;
+
 public class JewerelyStore {
     private int persons;
-    private int[] personsId;
+    private ArrayList<Integer> personsId;
     private boolean openStore;
     private boolean startStore;
 
     public JewerelyStore() {
         persons = 0;
-        personsId = new int[]{0, 0, 0, 0, 0};
+        personsId = new ArrayList<>();
         openStore = true;
         startStore = true;
     }
@@ -37,12 +39,7 @@ public class JewerelyStore {
     synchronized public void customerOn(int id) {
         persons++;
         if (persons >= 4) startStore = false;
-        for (int i = 0; i < personsId.length; i++) {
-            if (personsId[i] == 0) {
-                personsId[i] = id;
-                break;
-            }
-        }
+        personsId.add(id);
         System.out.print("Покупатель " + id + " вошёл в магазин. ");
         print();
     }
@@ -51,9 +48,9 @@ public class JewerelyStore {
     synchronized public void customerOff(int id) throws CustomerOffException{
         if (persons <= 0) throw new CustomerOffException("В магазине уже никого нет.");
         persons--;
-        for (int i = 0; i < personsId.length; i++) {
-            if (personsId[i] == id) {
-                personsId[i] = 0;
+        for (int i = 0; i < personsId.size(); i++) {
+            if (personsId.get(i) == id) {
+                personsId.remove(i);
                 break;
             }
         }
@@ -65,7 +62,7 @@ public class JewerelyStore {
     public void print() {
         System.out.print("В магазине " + persons + " человек: ");
         for (int i : personsId) {
-            if (i != 0) System.out.print(i + ", ");
+            System.out.print(i + ", ");
         }
         System.out.println();
     }
